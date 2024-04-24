@@ -1,6 +1,10 @@
 
 import streamlit as st
-import requests
+import joblib
+import numpy as np
+
+# Загрузка модели из файла
+pipeline_from_joblib = joblib.load('final_model_pipeline.joblib') 
 
 # Заголовок приложения
 st.title('Недвижимость: предсказание цен')
@@ -17,7 +21,6 @@ st.write(
     'Согласитесь очень странно что недвижимость с максимальной площадью не имеет ванных комнат или спален'
     
 )
-
 
 # Создание интерфейса для ввода данных
 sqft = st.slider('Площадь(в квадратных футах)')
@@ -94,9 +97,9 @@ street_zone_0 = st.slider('Зона улицы 0', 0, 1, 0)
 street_zone_1 = st.slider('Зона улицы 1', 0, 1, 0)
 street_zone_2 = st.slider('Зона улицы 2', 0, 1, 0)
 
-# Кнопка для отправки данных на сервер FastAPI и получения предсказания
+# Кнопка для предсказания цены
 if st.button('Предсказать цену'):
-    # Формирование данных для отправки
+    # Формирование данных для предсказания
     data = {
         "sqft": sqft,
         "beds": beds,
@@ -173,24 +176,9 @@ if st.button('Предсказать цену'):
         "street_zone_2": street_zone_2
     }
     
-    # Отправка POST-запроса на сервер FastAPI
-    # верный response = requests.post("http://127.0.0.1:8000/predict/", json=data)
-    #response = requests.post("http://host.docker.internal:8000/predict/", json=data)
-    
-    #fastapi_url = "http://my-streamlit-app:8000/predict/"
+    # Получение предсказания от модели
+    predicted_price = pipeline_from_joblib.predict([list(data.values())])
+    st.success(f'Предсказанная цена: ${predicted_price[0]:.2f}')
 
-    #fastapi_url = "http://0.0.0.0:8000/predict/"
-    #fastapi_url = "http://my-streamlit-app:8000/predict/"
-    fastapi_url = "http://localhost:8000/predict/" # рабочий варик 
-    #fastapi_url = "http://server:8501/predict/"
-
-    response = requests.post(fastapi_url, json=data)
-    # Обработка ответа
-    if response.status_code == 200:
-        result = response.json()
-        predicted_price = result["predicted_price"]
-        st.success(f'Предсказанная цена: ${predicted_price:.2f}')
-    else:
-        st.error('Ошибка при получении предсказания. Пожалуйста, попробуйте снова.')
 
 
