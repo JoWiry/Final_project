@@ -23,15 +23,15 @@ https://house-predict-by-jowiry.streamlit.app/
 
 * Сериализация модели и запуск своего приложения
 
-* * Использовали отдельно FastAPI & Streamlit;
+  **Использовали отдельно FastAPI & Streamlit;
 
 * Создание и запуск контейнера нашего приложения Streamlit
 
-  ** Использовавали Docker
+  **Использовавали Docker
 
-  ** Сборка Docker образа: docker build -t my-streamlit-app .
+  **Сборка Docker образа: docker build -t my-streamlit-app .
   
-  ** Запуск контейнера: docker run -p 8501:8501 my-streamlit-app
+  **Запуск контейнера: docker run -p 8501:8501 my-streamlit-app
 
 ## Результаты
 
