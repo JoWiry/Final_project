@@ -23,18 +23,18 @@ https://house-predict-by-jowiry.streamlit.app/
 
 * Сериализация модели и запуск своего приложения
 
-  ** Использовали отдельно FastAPI & Streamlit;
+  - Использовали отдельно FastAPI & Streamlit;
 
 * Создание и запуск контейнера нашего приложения Streamlit
 
-  **Использовавали Docker
+  - Использовавали Docker
 
-  **Сборка Docker образа: docker build -t my-streamlit-app .
+  - Сборка Docker образа: docker build -t my-streamlit-app .
   
-  **Запуск контейнера: docker run -p 8501:8501 my-streamlit-app
+  - Запуск контейнера: docker run -p 8501:8501 my-streamlit-app
 
 ## Результаты
 
-В целом, мы смогли построить модель прогнозирования цен на недвижимость, а также смогли  создать своё приложение на streamlit. 
+В целом, мы смогли построить модель прогнозирования цен на недвижимость, а также смогли  создать своё приложение на streamlit, что позволило сделать более User-friendly интерфейс. 
 Все модели демонстрируют неплохое качество. Наиболее успешными оказались модели  StackingRegressor и CatBoostRegressor. 
 Однако в приложении streamlit мы используем модель CatBoostRegressor. 
