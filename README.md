@@ -23,7 +23,7 @@ https://house-predict-by-jowiry.streamlit.app/
 
 * Сериализация модели и запуск своего приложения
 
-  **Использовали отдельно FastAPI & Streamlit;
+  ** Использовали отдельно FastAPI & Streamlit;
 
 * Создание и запуск контейнера нашего приложения Streamlit
 
